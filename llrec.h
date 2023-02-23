@@ -2,17 +2,26 @@
 #define LLREC_H
 #ifndef NULL
 #define NULL 0
+#include <iostream>
 #endif
 
 /**
  * Node struct for both problems
  */
+
 struct Node
 {
     int val;
     Node *next;
-
     Node(int v, Node* n) : val(v), next(n) {}
+};
+
+template <typename Comp>
+class compare{
+public:
+    bool operator()(Comp pred) {
+        return pred % 2 == 0;
+    }
 };
 
 
@@ -83,8 +92,23 @@ Node* llfilter(Node* head, Comp pred)
     //*********************************************
     // Provide your implementation below
     //*********************************************
+    if(head == nullptr){
+      return head;
+    }
+    Node* temp = llfilter(head->next, pred);
+    if(pred(head->val) == true){
+      delete head;
+      head = nullptr;
+      return temp;
+    }
+    else{
+      head->next = temp;
+      return head;
+    }
+    
 
 
 }
 
 #endif
+
