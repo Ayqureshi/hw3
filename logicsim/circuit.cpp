@@ -109,7 +109,7 @@ bool Circuit::parse(const char* fname)
                     getline(ss, s_output, ',');
                     m_gates.push_back(new Or2Gate(m_wires[stoi(s_in1)], m_wires[stoi(s_in2)], m_wires[stoi(s_output)]));
                 }
-                if(s_type == "Not")
+                if(s_type == "NOT")
                 {
                     std::string s_in1;
                     getline(ss, s_in1, ',');
